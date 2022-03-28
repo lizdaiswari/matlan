@@ -1,0 +1,43 @@
+---
+title: "Eigenvalues and Eigenvectors"
+output: html_notebook
+---
+
+eigen() function in R Language is used to calculate eigenvalues and eigenvectors of a matrix. Eigenvalue is the factor by which a eigenvector is scaled.
+
+#### Matrix 2x2
+Create a 2x2 matrix
+```{r}
+A <- matrix(c(-6, 3, 4, 5), 2, 2, TRUE)
+A
+```
+
+Calculating Eigenvalues and Eigenvectors
+```{r}
+ev <- eigen(A)
+
+#Calculate EigenValues
+values <- ev$values
+values
+
+#Calculate EigenVectors
+vectors <- ev$vectors
+vectors
+
+```
+
+#### Matrix 3x3
+```{r}
+B <- matrix(c(2, 0, 0, 0, 4, 5, 0, 4, 3), 3, 3, TRUE)
+B
+```
+
+```{r}
+ev <- eigen(B)
+values <- ev$values
+values
+
+vectors <- ev$vectors
+vectors
+```
+

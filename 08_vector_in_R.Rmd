@@ -1,0 +1,196 @@
+---
+title: "Operation on Vectors"
+output: html_notebook
+---
+
+What is vectors?
+A vector is a sequence of data elements of the same basic type. 
+
+### A. How to create vector in R?
+There are numerous ways to create an R vector.
+
+#### Using c() Function
+```{r}
+vec <- c(1,2,3,4,5)
+vec
+```
+
+#### Using assign() function
+```{r}
+assign("vec2",c(6,7,8,9,10)) 
+vec2
+```
+
+#### Using : operator
+```{r}
+vec3 <- 1:20
+vec3
+```
+
+### B. Basic Operation on Vector
+Basic operation such as arithmetic operations of vectors are performed memberwise (member-by-member).
+Suppose we have two vectors a and b.
+```{r}
+a = c(1, 3, 5, 7) 
+b = c(1, 2, 4, 8)
+```
+
+#### Scalar Multiplication
+```{r}
+5 * a 
+```
+
+#### Vector addition
+```{r}
+a + b
+```
+
+#### Vector subtraction
+```{r}
+(3*a) - b
+```
+
+#### Vector multiplication
+```{r}
+3*a * b
+```
+
+### C. Norm and Distance of Vectors
+#### Vector Norm
+Length of a vector also called as *norm*.
+```{r}
+v <- c(2, 3, -1, 2)
+v  
+```
+We can define our own norm function.
+```{r}
+norm_vec <- function(x) 
+  sqrt(sum(x^2))
+```
+
+```{r}
+norm_vec(v)   #Calculate norm of a vector
+```
+
+There is also a norm function in R.
+```{r}
+vec_norm <- norm(v, type = "2")    # Why type = '2'??
+vec_norm  
+```
+
+#### Vectors Distance
+Calculate the distance between two vector
+```{r}
+w <- c(-2, 3, 3, -1)
+```
+
+We can fefine our own distance function.
+```{r}
+euclidean <- function(a, b) sqrt(sum((a - b)^2))
+```
+
+```{r}
+euclidean(v,w)
+```
+
+There is also the dist function in R.
+```{r}
+dist(rbind(v,w), method = "euclidean")
+```
+
+### D. Dot Product
+The dot product or also known as the scalar product is an algebraic operation that takes two equal-length sequences of numbers and returns a single number.
+
+Import the required library 
+```{r}
+library(geometry) 
+```
+
+#### Example 1: Taking two scalar values 
+```{r}
+a = 5 
+b = 7 
+print(dot(a, b, d = TRUE))
+```
+
+#### Example 2: Taking two simple vectors 
+```{r}
+a = c(1, 4) 
+b = c(7, 4) 
+print(dot(a, b))
+```
+
+#### Example 3: Taking two 2D array 
+```{r}
+vector1 = c(2, 1) 
+vector2 = c(0, 3) 
+a = array(c(vector1, vector2), dim = c(2, 2)) 
+a
+
+vector1 = c(4, 2) 
+vector2 = c(9, 3) 
+b = array(c(vector1, vector2), dim = c(2, 2)) 
+b
+
+print(dot(a, b))
+```
+
+### E. Cross Product
+The cross product or also known as the vector product is a binary operation on two vectors in three-dimensional space and is denoted by the symbol ‘X‘. 
+
+Given two linearly independent vectors a and b, the cross product, *a × b* is a vector that is perpendicular to both a and b and thus normal to the plane containing them.
+
+Import the required library 
+```{r}
+library(pracma) 
+```
+
+#### Example 1: Taking input as vectors
+```{r}
+a = c(3, 5, 4) 
+b = c(2, 7, 5) 
+print(cross(a, b))
+```
+
+#### Example 2: Taking input as matrix
+```{r}
+a = matrix(  
+  c(1, 2, 3, 4, 5, 6, 7, 8, 9),   
+  nrow = 3,               
+  ncol = 3,               
+  byrow = TRUE           
+)  
+a
+
+b = matrix(  
+  c(5, 2, 1, 4, 6, 6, 3, 2, 9),   
+  nrow = 3,               
+  ncol = 3,               
+  byrow = TRUE           
+)  
+b
+
+print(cross(a, b))
+```
+
+#### Example 3: Taking input matrix 4x4
+```{r}
+c = matrix(  
+  c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),   
+  nrow = 4,               
+  ncol = 4,               
+  byrow = TRUE           
+)  
+c
+
+d = matrix(  
+  c(5, 2, 1, 4, 6, 6, 3, 2, 9, 11, 13, 15, 17, 19, 21, 23),   
+  nrow = 4,               
+  ncol = 4,               
+  byrow = TRUE           
+)  
+d
+
+print(crossprod(c, d))
+```
+
